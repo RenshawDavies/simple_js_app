@@ -24,3 +24,6 @@ let pokemonList = [
     color: 'brown', 
     types: ['ground']},
 ];
+for (let i = 0; i < pokemonList.length; i++) {
+  console.log(document.write(pokemonList[i].name) + (document.write('- Height: ')) + (document.write(pokemonList[i].height)) + (document.write(' <br>')));
+}
