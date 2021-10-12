@@ -1,3 +1,4 @@
+//array of Pokemon names, height, color, and types
 let pokemonList = [
   { name: 'Bulbasaur', 
     height: 0.7, 
@@ -24,6 +25,9 @@ let pokemonList = [
     color: 'brown', 
     types: ['ground']},
 ];
+
+//loop used to list all Pokemon and their heights on webpage
 for (let i = 0; i < pokemonList.length; i++) {
   console.log(document.write(pokemonList[i].name) + (document.write('- Height: ')) + (document.write(pokemonList[i].height)) + (document.write(' <br>')));
 }
+  
