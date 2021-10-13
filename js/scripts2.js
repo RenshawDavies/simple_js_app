@@ -28,8 +28,21 @@ let pokemonList = [
 
 //loop used to list all Pokemon and their heights on webpage
 for (let i = 0; i < pokemonList.length; i++) {
-  console.log(document.write(pokemonList[i].name) + 
-  (document.write('- Height: ')) + 
-  (document.write(pokemonList[i].height)) + 
-  (document.write(' <br>')));
+  if (pokemonList[i].height >= 0.7) {
+    console.log(
+    document.write(pokemonList[i].name) + 
+    document.write('- Height: ') + 
+    document.write(pokemonList[i].height) + 
+    document.write(' <--Wow, that\'s big!') +
+    document.write(' <br>')
+    );
+  }
+  else {
+    console.log(
+    document.write(pokemonList[i].name) +
+    document.write('- Height: ') +
+    document.write(pokemonList[i].height) +
+    document.write(' <br>')
+    );
+  }
 }
