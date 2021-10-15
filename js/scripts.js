@@ -43,7 +43,7 @@ let pokemonRepository = (function () {
 }) ();
 
 //loop used to list all Pokemon and their heights on webpage
-pokemonList.forEach(function(pokemon) {
+pokemonRepository.getAll().forEach(function(pokemon) {
   if (pokemon.height >= 0.7) {
   document.write(pokemon.name + '- Height: ' + pokemon.height + ' <--Wow, that\s big!' + '<br>')
   }
