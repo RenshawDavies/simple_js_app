@@ -44,10 +44,27 @@ let pokemonRepository = (function () {
     };
 }) ();
 
-//loop used to list all Pokemon and their heights on webpage
+//loop used to list all Pokemon on webpage
+
 pokemonRepository.getAll().forEach(function(pokemon) {
-  if (pokemon.height >= 0.7) {
-  document.write(pokemon.name + '- Height: ' + pokemon.height + ' <--Wow, that\s big!' + '<br>')
-  }
-  else document.write(pokemon.name + '-Height: ' + pokemon.height + '<br>')
-})
+
+  // creates <ul>
+  let list = document.querySelector('.pokemon-list');
+
+  // creates <li>
+  let listItem = document.createElement('li');
+
+  // creates <button>
+  let button = document.createElement('button');
+
+  // adds text to button
+  console.log(listItem.innerText);
+  listItem.innerText = 'pokemon.name';
+  console.log(listItem.innerText);
+
+  // adds class to button
+  button.classList.add('pokemon-button');
+
+  listItem.appendChild(button);
+  list.appendChild(li);
+  })
