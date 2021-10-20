@@ -29,24 +29,18 @@ let pokemonRepository = (function () {
       types: ['ground']},
   ];
 
-    // adds to pokedex
-    function add(pokemon) {
-      if (typeof pokemon === 'object') {
-        pokemonList.push(pokemon);
-      }
+  // adds to pokedex
+  function add(pokemon) {
+    if (typeof pokemon === 'object') {
+      pokemonList.push(pokemon);
     }
-    function getAll() {
-      return pokemonList;
-    }
-    return {
-      add: add,
-      getAll: getAll
-    };
-}) ();
-
-//loop used to list all Pokemon on webpage
-
-pokemonRepository.getAll().forEach(function(pokemon) {
+  }
+  
+  function getAll() {
+    return pokemonList;
+  }
+  
+  function addListItem(pokemon) {
 
   // creates <ul>
   let list = document.querySelector('.pokemon-list');
@@ -65,6 +59,22 @@ pokemonRepository.getAll().forEach(function(pokemon) {
   // adds class to button
   button.classList.add('pokemon-button');
 
+  // establishes hierarchy of list elements
   listItem.appendChild(button);
-  list.appendChild(listItem);
-  })
+  list.appendChild(listItem);  
+  }
+
+  return {
+    add: add,
+    getAll: getAll,
+    addListItem: addListItem
+  };
+}) ();
+
+//loop used to list all Pokemon on webpage
+
+pokemonRepository.getAll().forEach(function(pokemon) {
+  pokemonRepository.addListItem(pokemon)
+})
+  
+//go back to number 4
