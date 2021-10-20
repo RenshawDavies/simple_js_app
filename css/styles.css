@@ -9,15 +9,28 @@ body {
   background-color: yellow;
 }
 
+h1 {
+  text-align: center;
+}
+
+.pokemon-list {
+  padding: 1%;
+}
+
 .pokemon-button {
   background-color: black;
   color: yellow;
   padding: 1%;
   margin: 1%;
   width: 100px;
+  height: 40px;
+  border-style: inset;
+  border-radius: 15%;
 }
 
 li {
   list-style: none;
   /*color: yellow;*/
+  margin: 1%;
+  text-align: center;
 }
