@@ -8,3 +8,8 @@ body {
   line-height: 30px;
   background-color: yellow;
 }
+
+.pokemon-button {
+  background-color: black;
+  color: yellow;
+}
