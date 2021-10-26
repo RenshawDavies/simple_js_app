@@ -17,15 +17,23 @@ h1 {
   padding: 1%;
 }
 
-.pokemon-button {
+button {
   background-color: black;
   color: yellow;
   padding: 1%;
   margin: 1%;
-  width: 100px;
-  height: 40px;
   border-style: inset;
   border-radius: 15%;
+}
+
+.pokemon-button {
+  width: 100px;
+  height: 40px;
+}
+
+button:hover {
+  opacity: 0.6;
+  color: white;
 }
 
 li {
