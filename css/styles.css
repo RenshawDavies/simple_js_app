@@ -76,6 +76,9 @@ li {
   padding: 15px;
   width: 100%;
   max-width: 700px;
+  border: gray;
+  border-width: 10 px;
+  border-style: double;
 }
 
 .modal-close {
