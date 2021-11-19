@@ -1,5 +1,7 @@
 // IIFE function to avoid accidentally accessing the global state
 let pokemonRepository = (function () {
+  let modalContainer = document.querySelector('#modal-container');
+  let dialogPromiseReject; // This can be set later, by showDialog
 
   //empty array of pokemon, obtained from pokemon api
   let pokemonList = [];
@@ -9,7 +11,9 @@ let pokemonRepository = (function () {
   function add(pokemon) {
     if (typeof pokemon === 'object') {
       pokemonList.push(pokemon);
-    }
+    } else {
+      document.write('not a pokemon')
+    };
   }
   
   // returns all values in the pokemon array
@@ -28,17 +32,19 @@ let pokemonRepository = (function () {
 
     // creates <button>
     let button = document.createElement('button');
-    button.addEventListener('click', function(event) {
+    button.addEventListener('click', function () {
       showDetails(pokemon);
-    })
+    });
 
     // adds text to button
     console.log(button.innerText);
     button.innerText = pokemon.name;
-    console.log(button.innerText);
 
     // adds class to button
     button.classList.add('pokemon-button');
+
+    // adds class to list
+    listItem.classList.add('list-item');
 
     // establishes hierarchy of list elements
     listItem.appendChild(button);
@@ -67,7 +73,7 @@ let pokemonRepository = (function () {
     }).catch(function (e) {
       console.error(e);
     })
-  }
+  };
 
   // obtains data from pokemon api to add details to array for app
   function loadDetails(item) {
@@ -81,19 +87,25 @@ let pokemonRepository = (function () {
     }).catch(function (e) {
       console.error(e);
     });
-  }
+  };
+
+// MODAL
 
   // shows modal only if button is clicked
   function showModal(title, text) {
-    let modalContainer = document.querySelector('#modal-container');
+
+    // Clears all existing modal content
     modalContainer.innerHTML = '';
     
+    // adds modal
     let modal = document.createElement('div');
     modal.classList.add('modal');
 
+    // Closes modal with close button
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
     closeButtonElement.innerText = 'Close';
+    closeButtonElement.addEventListener('click', hideModal);
 
     let titleElement = document.createElement('h1');
     titleElement.innerText = title;
@@ -107,49 +119,24 @@ let pokemonRepository = (function () {
     modalContainer.appendChild(modal);
 
     modalContainer.classList.add('is-visible');
-  };
-
-  document.querySelector('#show-modal').addEventListener('click', () => {
-    showModal('Modal title', 'This is the modal content!');
-  });
-
-  // instructions to close modal on cue
+  }
+  
   function hideModal() {
-    let modalContainer = document.querySelector('modal-container');
     modalContainer.classList.remove('is-visible');
+
+    if (dialogPromiseReject) {
+      dialogPromiseReject();
+      dialogPromiseReject = null;
+    }
   }
 
-  // closes modal with 'close' button
-  let closeButtonElement = document.createElement('button');
-  closeButtonElement.classList.add('modal-close');
-  closeButtonElement.innerText = 'Close';
-  closeButtonElement.addEventListener('click', hideModal);
-
-  // closes modal with 'esc' key
-  window.addEventListener('keydown', (e) => {
-    let modalContainer = document.querySelector('#modal-container');
-    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-      hideModal();
-    }
-  });
-
-  // closes modal when user clicks outside of it
-  modalContainer.addEventListener('click', (e) => {
-    let target = e.target;
-    if (target === modalContainer) {
-      hideModal();
-    }
-  });
-
+// DIALOG
   function showDialog(title, text) {
     showModal(title, text);
 
-    // defines modalContainer
-    let modalContainer = document.querySelector('#modal-container');
-
-    // adds confirm and cancel button to modal
+    // Add a confirm and cancel button to the modal
     let modal = modalContainer.querySelector('.modal');
-    
+
     let confirmButton = document.createElement('button');
     confirmButton.classList.add('modal-confirm');
     confirmButton.innerText = 'Confirm';
@@ -161,10 +148,52 @@ let pokemonRepository = (function () {
     modal.appendChild(confirmButton);
     modal.appendChild(cancelButton);
 
-    // focus the confirmButton so user can simply press 'Enter'
+    // Focus the confirmButton so user can simply press Enter
     confirmButton.focus();
-  }
+  
+    // Return a promise that resolves when confirmed, else rejects
+    return new Promise((resolve, reject) => {
+      cancelButton.addEventListener('click', hideModal);
+      confirmButton.addEventListener('click', () => {
+        dialogPromiseReject = null; // Reset this
+        hideModal();
+        resolve();
+      });
 
+      // This can be used to reject from other functions
+      dialogPromiseReject = reject;
+    });
+  }
+  
+  document.querySelector('#show-modal').addEventListener('click', () => {
+    showModal('Modal title', 'This is the modal content!');
+  });
+
+  document.querySelector('#show-dialog').addEventListener('click', () => {
+    showDialog('Confirm action', 'Are you sure you want to do this?').then(function () {
+      alert('confirmed!');
+    }, () => {
+      alert('not confirmed');
+    });
+  });
+  
+  // Close modal with esc key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+  }); 
+
+  // Close modal by clicking outside it
+  modalContainer.addEventListener('click', (e) => {
+
+    // Targets only area OUTSIDE the modal
+    let target = e.target;
+    if (target === modalContainer) {
+      hideModal();
+    }
+  });
+  
   // functions that can access the IIFE
   return {
     add: add,
