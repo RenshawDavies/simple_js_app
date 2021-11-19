@@ -75,7 +75,6 @@ li {
   padding: 15px;
   width: 100%;
   max-width: 700px;
-  text-align: left;
 }
 
 .modal-close {
@@ -89,8 +88,10 @@ li {
 
 .modal h1 {
   margin-top: 0;
+  text-align: left;
 }
 
 .modal p {
   margin-bottom: 0;
+  text-align: center;
 }
