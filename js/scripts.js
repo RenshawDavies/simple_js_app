@@ -5,7 +5,7 @@ let pokemonRepository = (function () {
 
   // empty array of pokemon, obtained from pokemon api
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
 
   //ensures pokemon is an object
   function add(pokemon) {
