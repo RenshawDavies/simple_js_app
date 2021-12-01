@@ -16,48 +16,6 @@ let pokemonRepository = (function () {
     };
   }
 
-  // returns all values in the pokemon array
-  function getAll() {
-    return pokemonList;
-  }
-  
-  // adds a new pokemon
-  function addListItem(pokemon) {
-  
-    // creates <ul>
-    let list = document.querySelector('.pokemon-list');
-      
-    // creates <li>
-    let listItem = document.createElement('li');
-
-    // creates <button>
-    let button = document.createElement('button');
-    button.addEventListener('click', function () {
-      showDetails(pokemon);
-    });
-
-    // adds text to button
-    console.log(button.innerText);
-    button.innerText = pokemon.name;
-
-    // adds class to button
-    button.classList.add('pokemon-button');
-
-    // adds class to list
-    listItem.classList.add('list-item');
-
-    // establishes hierarchy of list elements
-    listItem.appendChild(button);
-    list.appendChild(listItem);  
-  }
-
-  // outputs requested details from pokemon api to console
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-      console.log(pokemon);
-    });
-  }
-
   // obtains data from pokemon api to add names to array
   function loadList() {
     return fetch(apiUrl).then(function (response) {
@@ -89,6 +47,71 @@ let pokemonRepository = (function () {
     });
   };
 
+  // outputs requested details from api for specific pokemon
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function () {
+      showModal(pokemon) // this?
+      let modalTitle = document.querySelector('.modal-title');
+      modalTitle.innerText = pokemon.name;
+
+      let height = document.querySelector('.pokemon-height');
+      height.innerText = 'Height: ${pokemon.height}';
+
+      let img = document.querySelector('.pokemon-img');
+      img.setAttribute('src', pokemon.imgURL);
+
+      let typesArr = []
+      let pokemonTypes = document.querySelector('.pokemon-types')
+      pokemon.types.forEach(item => {
+        let types = item.type.name
+        typesArr.push(types)
+      })
+
+      let string = typesArr.join(' & ')
+      pokemonTypes.innerText = 'Type(s): ${string}';
+    })
+  };
+  
+  // adds a new pokemon
+  function addListItem(pokemon) {
+  
+    // creates <ul>
+    let list = document.querySelector('.pokemon-list');
+      
+    // creates <li>
+    let listItem = document.createElement('li');
+
+    // adds class to list item
+    listItem.classList.add('list-item');
+  
+    // creates <button>
+    let button = document.createElement('button');
+
+    // adds class to button
+    button.classList.add('pokemon-button');
+
+    // adds text to button
+    button.innerText = pokemon.name;
+
+    //establishes hierarchy of list elements
+    listItem.appendChild(button);
+    list.appendChild(listItem);
+
+    // activates showDetails upon clicking button
+    button.addEventListener('click', function () {
+      showDetails(pokemon);
+    });
+    
+    // ATTRIBUTES?
+
+  }
+
+  // returns all values in the pokemon array
+  function getAll() {
+    return pokemonList;
+  }
+
+  MODAL
 
   // shows modal only if button is clicked
   function showModal(title, text) {
