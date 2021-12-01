@@ -1,7 +1,6 @@
 // IIFE function to avoid accidentally accessing the global state
 let pokemonRepository = (function () {
-  let modalContainer = document.querySelector('#modal-container');
-  let dialogPromiseReject; // This can be set later, by showDialog
+  let modalContainer = document.querySelector('#modal-container'); // NEEDED?
 
   // empty array of pokemon, obtained from pokemon api
   let pokemonList = [];
@@ -21,7 +20,7 @@ let pokemonRepository = (function () {
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
-      json.results.forEach(function (item) {
+      json.results.forEach((item) => {
         let pokemon = {
           name: item.name,
           detailsUrl: item.url
@@ -114,7 +113,7 @@ let pokemonRepository = (function () {
   MODAL
 
   // shows modal only if button is clicked
-  function showModal(title, text) {
+  function showModal(pokemon) {
 
     // clears all existing modal content
     modalContainer.innerHTML = '';
