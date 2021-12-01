@@ -110,7 +110,7 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-  MODAL
+  // MODAL
 
   // shows modal only if button is clicked
   function showModal(pokemon) {
@@ -146,9 +146,11 @@ let pokemonRepository = (function () {
     modalContainer.classList.remove('is-visible');
   }
 
-  document.querySelector('#show-modal').addEventListener('click', () => {
+  /* 
+  document.querySelector('#show-modal')
+  .addEventListener('click', () => {
     showModal('Modal title', 'This is the modal content!');
-  });
+  }); 
 
   // close modal with esc key
   window.addEventListener('keydown', (e) => {
@@ -165,7 +167,7 @@ let pokemonRepository = (function () {
     if (target === modalContainer) {
       hideModal();
     }
-  });
+  }); */
 
   // functions that can access the IIFE
   return {
