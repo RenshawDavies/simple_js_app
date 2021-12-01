@@ -144,11 +144,6 @@ let pokemonRepository = (function () {
 
   function hideModal() {
     modalContainer.classList.remove('is-visible');
-
-    if (dialogPromiseReject) {
-      dialogPromiseReject();
-      dialogPromiseReject = null;
-    }
   }
 
   document.querySelector('#show-modal').addEventListener('click', () => {
