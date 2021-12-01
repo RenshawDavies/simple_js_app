@@ -3,11 +3,11 @@ let pokemonRepository = (function () {
   let modalContainer = document.querySelector('#modal-container');
   let dialogPromiseReject; // This can be set later, by showDialog
 
-  //empty array of pokemon, obtained from pokemon api
+  // empty array of pokemon, obtained from pokemon api
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-  // adds to pokedex
+  //ensures pokemon is an object
   function add(pokemon) {
     if (typeof pokemon === 'object') {
       pokemonList.push(pokemon);
@@ -15,7 +15,7 @@ let pokemonRepository = (function () {
       document.write('not a pokemon')
     };
   }
-  
+
   // returns all values in the pokemon array
   function getAll() {
     return pokemonList;
@@ -23,10 +23,10 @@ let pokemonRepository = (function () {
   
   // adds a new pokemon
   function addListItem(pokemon) {
-
+  
     // creates <ul>
     let list = document.querySelector('.pokemon-list');
-
+      
     // creates <li>
     let listItem = document.createElement('li');
 
@@ -58,7 +58,7 @@ let pokemonRepository = (function () {
     });
   }
 
-  // obtains data from pokemon api to add names to array for app
+  // obtains data from pokemon api to add names to array
   function loadList() {
     return fetch(apiUrl).then(function (response) {
       return response.json();
@@ -72,7 +72,7 @@ let pokemonRepository = (function () {
       });
     }).catch(function (e) {
       console.error(e);
-    })
+    });
   };
 
   // obtains data from pokemon api to add details to array for app
@@ -89,19 +89,18 @@ let pokemonRepository = (function () {
     });
   };
 
-// MODAL
 
   // shows modal only if button is clicked
   function showModal(title, text) {
 
-    // Clears all existing modal content
+    // clears all existing modal content
     modalContainer.innerHTML = '';
-    
+
     // adds modal
     let modal = document.createElement('div');
     modal.classList.add('modal');
 
-    // Closes modal with close button
+    // closes modal with close button
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
     closeButtonElement.innerText = 'Close';
@@ -120,7 +119,7 @@ let pokemonRepository = (function () {
 
     modalContainer.classList.add('is-visible');
   }
-  
+
   function hideModal() {
     modalContainer.classList.remove('is-visible');
 
@@ -177,23 +176,23 @@ let pokemonRepository = (function () {
     });
   });
   
-  // Close modal with esc key
+  // close modal with esc key
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
       hideModal();
     }
-  }); 
+  });
 
-  // Close modal by clicking outside it
+  // close modal by clicking outside it
   modalContainer.addEventListener('click', (e) => {
 
-    // Targets only area OUTSIDE the modal
+    // targets only area OUTSIDE the modal
     let target = e.target;
     if (target === modalContainer) {
       hideModal();
     }
   });
-  
+
   // functions that can access the IIFE
   return {
     add: add,
@@ -208,10 +207,11 @@ let pokemonRepository = (function () {
   };
 }) ();
 
-//loop used to list all Pokemon on webpage
+// loop used to list all Pokemon on webpage
 
 pokemonRepository.loadList().then(function () {
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon)
   });
 });
+
