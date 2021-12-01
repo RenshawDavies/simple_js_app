@@ -33,15 +33,15 @@ let pokemonRepository = (function () {
     });
   };
 
-  // obtains data from pokemon api to add details to array for app
-  function loadDetails(item) {
-    let url = item.detailsUrl;
+  // obtains data from pokemon api to add details to array
+  function loadDetails(pokemon) {
+    let url = pokemon.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      item.imageUrl = details.sprites.front_default;
-      item.height = details.height;
-      item.types = details.types;
+      pokemon.imgURL = details.sprites.front_default;
+      pokemon.height = details.height;
+      pokemon.types = details.types;
     }).catch(function (e) {
       console.error(e);
     });
