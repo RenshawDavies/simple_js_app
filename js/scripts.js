@@ -75,9 +75,6 @@ let pokemonRepository = (function () {
     button.addEventListener('click', function () {
       showDetails(pokemon);
     });
-    
-    // ATTRIBUTES?
-
   }
 
   // returns all values in the pokemon array
