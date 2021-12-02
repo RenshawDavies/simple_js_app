@@ -45,31 +45,6 @@ let pokemonRepository = (function () {
       console.error(e);
     });
   };
-
-  // outputs requested details from api for specific pokemon
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-      showModal(pokemon) // this?
-      let modalTitle = document.querySelector('.modal-title');
-      modalTitle.innerText = pokemon.name;
-
-      let height = document.querySelector('.pokemon-height');
-      height.innerText = 'Height: ${pokemon.height}';
-
-      let img = document.querySelector('.pokemon-img');
-      img.setAttribute('src', pokemon.imgURL);
-
-      let typesArr = []
-      let pokemonTypes = document.querySelector('.pokemon-types')
-      pokemon.types.forEach(item => {
-        let types = item.type.name
-        typesArr.push(types)
-      })
-
-      let string = typesArr.join(' & ')
-      pokemonTypes.innerText = 'Type(s): ${string}';
-    })
-  };
   
   // adds a new pokemon
   function addListItem(pokemon) {
@@ -142,9 +117,9 @@ let pokemonRepository = (function () {
     modalContainer.classList.add('is-visible');
   }
 
-  function hideModal() {
-    modalContainer.classList.remove('is-visible');
-  }
+    function hideModal() {
+      modalContainer.classList.remove('is-visible');
+    }
 
   /* 
   document.querySelector('#show-modal')
@@ -168,6 +143,31 @@ let pokemonRepository = (function () {
       hideModal();
     }
   }); */
+
+    // outputs requested details from api for specific pokemon
+    function showDetails(pokemon) {
+      loadDetails(pokemon).then(function () {
+        showModal(pokemon) // this?
+        let modalTitle = document.querySelector('.modal-title');
+        modalTitle.innerText = pokemon.name;
+  
+        let height = document.querySelector('.pokemon-height');
+        height.innerText = 'Height: ${pokemon.height}';
+  
+        let img = document.querySelector('.pokemon-img');
+        img.setAttribute('src', pokemon.imgURL);
+  
+        let typesArr = []
+        let pokemonTypes = document.querySelector('.pokemon-types')
+        pokemon.types.forEach(item => {
+          let types = item.type.name
+          typesArr.push(types)
+        })
+  
+        let string = typesArr.join(' & ')
+        pokemonTypes.innerText = 'Type(s): ${string}';
+      })
+    };
 
   // functions that can access the IIFE
   return {
