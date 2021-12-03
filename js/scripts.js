@@ -129,10 +129,15 @@ let pokemonRepository = (function () {
     closeButtonElement.addEventListener('click', hideModal);
 
     let titleElement = document.createElement('h1');
-    titleElement.innerText = title;
+    titleElement.innerText = pokemon.name;
 
     let contentElement = document.createElement('p');
-    contentElement.innerText = text;
+    const html = `
+    <h4>Height: ${pokemon.height}</h4>
+    <br>
+    <img src=${pokemon.imgURL}>
+    `
+    contentElement.innerHTML = html;
 
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
