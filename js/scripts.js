@@ -61,17 +61,34 @@ let pokemonRepository = (function () {
           img.setAttribute('src', pokemon.imgURL);
 
           let height = document.querySelector('.pokemon-height');
-          height.innerText = 'Height: ${pokemon.height}';
+          height.innerText = 'Height: ${pokemon.height} m';
+
+          let weight = document.querySelector('.pokemon-weight');
+          weight.innerText = 'Weight: ${pokemon.weight} kg';
+
+          // add type and ability later 
     
-          let typesArr = []
-          let pokemonTypes = document.querySelector('.pokemon-types')
-          pokemon.types.forEach(item => {
-            let types = item.type.name
-            typesArr.push(types)
+          /* let typesArr = []
+            let pokemonTypes = document.querySelector('.pokemon-types')
+              pokemon.types.forEach(item => {
+            let types = item.types.name
+              typesArr.push(types);
+
+          let abilitiesArr = []
+            let pokemonAbilities = document.querySelector('.pokemon-abilities')
+              pokemon.abilities.forEach(item => {
+            let abilities = item.abilities.name
+              abilitiesArr.push(abilities);
+            })    
           })
     
           let string = typesArr.join(' & ')
           pokemonTypes.innerText = 'Type(s): ${string}';
+
+          let string2 = abilitiesArr.join(' & ')
+          pokemonAbilities.innerText = 'Abilities: ${string2}';
+          */
+
         })
       };
 
@@ -100,9 +117,12 @@ let pokemonRepository = (function () {
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
+      item.name = details.name;
       item.imgURL = details.sprites.front_default;
       item.height = details.height;
-      item.types = details.types;
+      item.weight = details.weight;
+      // item.types = details.types; --later
+      // item.types = details.abilities; --later
     }).catch(function (e) {
       console.error(e);
     })
@@ -133,10 +153,12 @@ let pokemonRepository = (function () {
 
     let contentElement = document.createElement('p');
     const html = `
-    <h4>Height: ${pokemon.height}</h4>
-    <br>
     <img src=${pokemon.imgURL}>
+    <br>
+    <h4>Height: ${pokemon.height} m</h4>
+    <h4>Weight: ${pokemon.weight} kg</h4>
     `
+    // add types and abilities here later
     contentElement.innerHTML = html;
 
     modal.appendChild(closeButtonElement);
