@@ -13,7 +13,7 @@ let pokemonRepository = (function () {
   //ensures pokemon is an object
   function add(pokemon) {
     if (typeof pokemon === 'object') {
-      pokemonList.push(pokemon);
+      return pokemonList.push(pokemon);
     } else {
       document.write('not a pokemon')
     };
