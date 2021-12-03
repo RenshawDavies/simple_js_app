@@ -55,7 +55,7 @@ let pokemonRepository = (function () {
         loadDetails(pokemon).then(function () {  
           showModal(pokemon);
           let modalTitle = document.querySelector('.modal-title');
-          modalTitle.innerHTML = 'Hi, I\'m ${pokemon.name}!';
+          modalTitle.innerText = 'Hi, I\'m ${pokemon.name}!';
     
           let img = document.querySelector('.pokemon-img');
           img.setAttribute('src', pokemon.imgURL);
