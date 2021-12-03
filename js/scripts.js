@@ -1,10 +1,14 @@
 // IIFE function to avoid accidentally accessing the global state
 let pokemonRepository = (function () {
-  let modalContainer = document.querySelector('#modal-container'); // NEEDED?
 
   // empty array of pokemon, obtained from pokemon api
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+
+  // returns all values in the pokemon array
+  function getAll() {
+    return pokemonList;
+  }
 
   //ensures pokemon is an object
   function add(pokemon) {
@@ -15,37 +19,6 @@ let pokemonRepository = (function () {
     };
   }
 
-  // obtains data from pokemon api to add names to array
-  function loadList() {
-    return fetch(apiUrl).then(function (response) {
-      return response.json();
-    }).then(function (json) {
-      json.results.forEach((item) => {
-        let pokemon = {
-          name: item.name,
-          detailsUrl: item.url
-        };
-        add(pokemon);
-      });
-    }).catch(function (e) {
-      console.error(e);
-    });
-  };
-
-  // obtains data from pokemon api to add details to array
-  function loadDetails(pokemon) {
-    let url = pokemon.detailsUrl;
-    return fetch(url).then(function (response) {
-      return response.json();
-    }).then(function (details) {
-      pokemon.imgURL = details.sprites.front_default;
-      pokemon.height = details.height;
-      pokemon.types = details.types;
-    }).catch(function (e) {
-      console.error(e);
-    });
-  };
-  
   // adds a new pokemon
   function addListItem(pokemon) {
   
@@ -77,12 +50,67 @@ let pokemonRepository = (function () {
     });
   }
 
-  // returns all values in the pokemon array
-  function getAll() {
-    return pokemonList;
-  }
+      // outputs requested details from api for specific pokemon
+      function showDetails(pokemon) {
+        loadDetails(pokemon).then(function () {  
+          showModal(pokemon);
+          let modalTitle = document.querySelector('.modal-title');
+          modalTitle.innerHTML = 'Hi, I\'m ${pokemon.name}!';
+    
+          let img = document.querySelector('.pokemon-img');
+          img.setAttribute('src', pokemon.imgURL);
+
+          let height = document.querySelector('.pokemon-height');
+          height.innerText = 'Height: ${pokemon.height}';
+    
+          let typesArr = []
+          let pokemonTypes = document.querySelector('.pokemon-types')
+          pokemon.types.forEach(item => {
+            let types = item.type.name
+            typesArr.push(types)
+          })
+    
+          let string = typesArr.join(' & ')
+          pokemonTypes.innerText = 'Type(s): ${string}';
+        })
+      };
+
+// add loading functionality
+
+  // obtains data from pokemon api to add names to array
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    });
+  };
+
+  // obtains data from pokemon api to add details to array
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.imgURL = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    })
+  };
 
   // MODAL
+
+  let modalContainer = document.querySelector('#modal-container');
 
   // shows modal only if button is clicked
   function showModal(pokemon) {
@@ -139,32 +167,7 @@ let pokemonRepository = (function () {
     if (target === modalContainer) {
       hideModal();
     }
-  }); */
-
-    // outputs requested details from api for specific pokemon
-    function showDetails(pokemon) {
-      loadDetails(pokemon).then(function () {
-        showModal(pokemon) // this?
-        let modalTitle = document.querySelector('.modal-title');
-        modalTitle.innerText = pokemon.name;
-  
-        let height = document.querySelector('.pokemon-height');
-        height.innerText = 'Height: ${pokemon.height}';
-  
-        let img = document.querySelector('.pokemon-img');
-        img.setAttribute('src', pokemon.imgURL);
-  
-        let typesArr = []
-        let pokemonTypes = document.querySelector('.pokemon-types')
-        pokemon.types.forEach(item => {
-          let types = item.type.name
-          typesArr.push(types)
-        })
-  
-        let string = typesArr.join(' & ')
-        pokemonTypes.innerText = 'Type(s): ${string}';
-      })
-    };
+  }); 
 
   // functions that can access the IIFE
   return {
