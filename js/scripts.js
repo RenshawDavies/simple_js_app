@@ -54,43 +54,8 @@ let pokemonRepository = (function () {
       function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {  
           showModal(pokemon);
-          let modalTitle = document.querySelector('.modal-title');
-          modalTitle.innerText = 'Hi, I\'m ${pokemon.name}!';
-    
-          let img = document.querySelector('.pokemon-img');
-          img.setAttribute('src', pokemon.imgURL);
-
-          let height = document.querySelector('.pokemon-height');
-          height.innerText = 'Height: ${pokemon.height} m';
-
-          let weight = document.querySelector('.pokemon-weight');
-          weight.innerText = 'Weight: ${pokemon.weight} kg';
-
-          // add type and ability later 
-    
-          /* let typesArr = []
-            let pokemonTypes = document.querySelector('.pokemon-types')
-              pokemon.types.forEach(item => {
-            let types = item.types.name
-              typesArr.push(types);
-
-          let abilitiesArr = []
-            let pokemonAbilities = document.querySelector('.pokemon-abilities')
-              pokemon.abilities.forEach(item => {
-            let abilities = item.abilities.name
-              abilitiesArr.push(abilities);
-            })    
-          })
-    
-          let string = typesArr.join(' & ')
-          pokemonTypes.innerText = 'Type(s): ${string}';
-
-          let string2 = abilitiesArr.join(' & ')
-          pokemonAbilities.innerText = 'Abilities: ${string2}';
-          */
-
-        })
-      };
+        }) 
+      }; 
 
 // add loading functionality
 
