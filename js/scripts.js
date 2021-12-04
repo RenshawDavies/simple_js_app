@@ -86,8 +86,8 @@ let pokemonRepository = (function () {
       item.imgURL = details.sprites.front_default;
       item.height = details.height;
       item.weight = details.weight;
-      // item.types = details.types; --later
-      // item.types = details.abilities; --later
+      // item.types = details.types; add later
+      // item.abilities = details.abilities; add later
     }).catch(function (e) {
       console.error(e);
     })
