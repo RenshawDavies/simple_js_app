@@ -28,17 +28,17 @@ let pokemonRepository = (function () {
     // creates <li>
     let listItem = document.createElement('li');
 
-      // adds class to list item
-      listItem.classList.add('list-item');
-  
     // creates <button>
     let button = document.createElement('button');
 
-      // adds class to button
-      button.classList.add('pokemon-button');
+    // adds class to list item
+    listItem.classList.add('list-item', 'group-list-item');
+  
+    // adds class to button
+    button.classList.add('pokemon-button', 'btn', 'btn-primary');
 
-      // adds text to button
-      button.innerText = pokemon.name;
+    // adds text to button
+    button.innerText = pokemon.name;
 
     //establishes hierarchy of list elements
     listItem.appendChild(button);
