@@ -180,4 +180,4 @@ pokemonRepository.loadList().then(function () {
     pokemonRepository.addListItem(pokemon)
   });
 });
-
+// THIRD TRY WITH BOOTSTRAP YAAAYYY
