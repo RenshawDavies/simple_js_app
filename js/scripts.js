@@ -49,7 +49,7 @@ let pokemonRepository = (function () {
     list.appendChild(listItem);
 
     // activates showDetails upon clicking button
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function (event) {
       showDetails(pokemon);
     });
   }
