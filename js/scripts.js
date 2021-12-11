@@ -23,7 +23,7 @@ let pokemonRepository = (function () {
   function addListItem(pokemon) {
   
     // creates <ul>
-    let list = document.querySelector('.pokemon-list');
+    let list = document.querySelector('.pokemon-list', '.list-group');
       
     // creates <li>
     let listItem = document.createElement('li');
