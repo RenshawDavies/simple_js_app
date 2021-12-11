@@ -5,7 +5,7 @@ let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-  // returns all values in the pokemon array
+  // returns all values in the pokemon array via forEach loop
   function getAll() {
     return pokemonList;
   }
@@ -15,7 +15,7 @@ let pokemonRepository = (function () {
     if (typeof pokemon === 'object') {
       return pokemonList.push(pokemon);
     } else {
-      document.write('not a pokemon')
+      console.log('not a pokemon')
     };
   }
 
@@ -56,7 +56,7 @@ let pokemonRepository = (function () {
 
 // add loading functionality
 
-  // obtains data from pokemon api to add names to array
+  // obtains data from pokemon api
   function loadList() {
     return fetch(apiUrl).then(function (response) {
       return response.json();
@@ -73,7 +73,7 @@ let pokemonRepository = (function () {
     });
   };
 
-  // obtains data from pokemon api to add details to array
+  // add details to array from api data
   function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
