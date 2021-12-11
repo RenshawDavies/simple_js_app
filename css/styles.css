@@ -42,13 +42,13 @@ li {
   text-align: center;
 }
 
-#modal-container {
+#exampleModal {
 
   /* to hide modal by default */
   display: none;
 }
 
-#modal-container.is-visible {
+#exampleModal.is-visible {
   position: fixed;
   padding: 20px;
   top: 0;
