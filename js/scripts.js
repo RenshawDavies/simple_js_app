@@ -80,7 +80,7 @@ let pokemonRepository = (function () {
       return response.json();
     }).then(function (details) {
       item.name = details.name;
-      item.imgURL = details.sprites.front_default;
+      item.imgUrl = details.sprites.front_default;
       item.height = details.height;
       item.weight = details.weight;
       // item.types = details.types; add later
