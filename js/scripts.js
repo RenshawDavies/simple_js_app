@@ -88,6 +88,7 @@ let pokemonRepository = (function () {
       item.imgUrl = details.sprites.front_default;
       item.height = details.height;
       item.weight = details.weight;
+      item.types = details.types;
     }).catch(function (e) {
       console.error(e);
     })
@@ -127,11 +128,16 @@ let pokemonRepository = (function () {
     // adds pokemon weight to modal
     let weightElement = $("<p>" + "Weight: " + pokemon.weight + " kg" + "</p>");
 
+    // adds pokemon type(s) to modal
+    let typesElement = $(`<p> Types(s): ${pokemon.types.map(p => p.type.name).join(', ')}</p>`);
+
     // establishes hierachy of modal elements
     modalTitle.append(nameElement);
     modalBody.append(imageElement);
     modalBody.append(heightElement);
     modalBody.append(weightElement);
+    modalBody.append(typesElement);
+  } 
 
     function hideModal() {
       modalContainer.classList.remove('is-visible');
