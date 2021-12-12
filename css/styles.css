@@ -94,7 +94,9 @@ p {
   text-align: center;
 }
 
+.close {
   color: yellow;
+  opacity: 100;
 }
 
 .close:hover, .close:focus {
