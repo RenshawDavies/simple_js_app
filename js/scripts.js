@@ -115,7 +115,7 @@ let pokemonRepository = (function () {
     modalTitle.empty();
 
     // adds name as heading in modal
-    let nameElement = $("<h1>" + "Hi, I\'m " + pokemon.name + "!" + "</h1>");
+    let nameElement = $("<h5>" + "Hi, I\'m " + pokemon.name + "!" + "</h5>");
 
     // adds pokemon image to modal
     let imageElement = $("<img class='modal-image' style='width:30%'>");
