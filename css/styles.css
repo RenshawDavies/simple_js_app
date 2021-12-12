@@ -33,19 +33,32 @@ body {
   flex-wrap: wrap;
 }
 
+.btn-primary {
   background-color: black;
   color: yellow;
   padding: 1%;
   margin: 1%;
   border-style: inset;
-  border-radius: 15%;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
   border-color: gray;
+  border-radius: 50%;
+  width: 200px;
+  height: 75px;
 }
 
+.btn-primary:hover, .btn-primary:focus {
   opacity: 0.9;
   background-color: black;
   border-color: gray;
   color: yellow;
+  border-top-width: 3px;
+  border-left-width: 3px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  box-shadow: none;
 }
 
 li {
@@ -89,10 +102,21 @@ p {
   opacity: 0.6;
 }
 
+.btn-secondary {
   background-color: yellow;
   color: black;
+  border-radius: 50%;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
 }
 
+.btn-secondary:hover, .btn-secondary:focus {
   background-color: yellow;
   color: black;
+  border-top-width: 2px;
+  border-left-width: 2px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
 }
