@@ -3,10 +3,10 @@
 }
 
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 2%;
   line-height: 30px;
   background-color: yellow;
+  font-family: 'Press Start 2P', 'Verdana', sans-serif;
 }
 
 h1 {
