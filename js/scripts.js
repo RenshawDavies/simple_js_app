@@ -54,8 +54,6 @@ let pokemonRepository = (function () {
     });
   }
 
-// add loading functionality
-
   // obtains data from pokemon api
   function loadList() {
     return fetch(apiUrl).then(function (response) {
@@ -83,8 +81,6 @@ let pokemonRepository = (function () {
       item.imgUrl = details.sprites.front_default;
       item.height = details.height;
       item.weight = details.weight;
-      // item.types = details.types; add later
-      // item.abilities = details.abilities; add later
     }).catch(function (e) {
       console.error(e);
     })
@@ -121,7 +117,7 @@ let pokemonRepository = (function () {
     // adds pokemon height to modal
     let heightElement = $("<p>" + "Height: " + pokemon.height + " m" + "</p>");
 
-    // adds pokemon wight to modal
+    // adds pokemon weight to modal
     let weightElement = $("<p>" + "Weight: " + pokemon.weight + " kg" + "</p>");
 
     // establishes hierachy of modal elements
@@ -129,16 +125,6 @@ let pokemonRepository = (function () {
     modalBody.append(imageElement);
     modalBody.append(heightElement);
     modalBody.append(weightElement);
-
-    let divElement = $("<div class ='divType></div>");
-
-    pokemon.types.forEach(item => {
-      let contentElement = $("<text-area>" + item.type.name + "</text-area>");
-      contentElement.addClass("type-element");
-      divElement.append(contentElement);
-      modalBody.append(divElement);
-    })
-  }
 
     function hideModal() {
       modalContainer.classList.remove('is-visible');
@@ -164,4 +150,3 @@ pokemonRepository.loadList().then(function () {
     pokemonRepository.addListItem(pokemon)
   });
 });
-// THIRD TRY WITH BOOTSTRAP YAAAYYY
