@@ -118,7 +118,7 @@ let pokemonRepository = (function () {
     let nameElement = $("<h5>" + "Hi, I\'m " + pokemon.name + "!" + "</h5>");
 
     // adds pokemon image to modal
-    let imageElement = $("<img class='modal-image' style='width:30%'>");
+    let imageElement = $(`<img class='modal-image' style='width:30%' alt='image of ${pokemon.name}'>`);
     imageElement.attr("src", pokemon.imgUrl);
 
     // adds pokemon height to modal
