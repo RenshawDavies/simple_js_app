@@ -1,14 +1,14 @@
 body {
   margin: 2%;
   line-height: 30px;
-  background-color: yellow;
+  background-color: rgb(245, 224, 66);
   font-family: 'Press Start 2P', 'Verdana', sans-serif;
   text-align: center;
 }
 
 .navbar {
   background-color: black;
-  color: yellow;
+  color: rgb(245, 224, 66);
   margin: 0;
   padding: 2%;
   flex-grow: 1;
@@ -35,7 +35,7 @@ body {
 
 .btn-primary {
   background-color: black;
-  color: yellow;
+  color: rgb(245, 224, 66);
   padding: 1%;
   margin: 1%;
   border-style: inset;
@@ -53,7 +53,7 @@ body {
   opacity: 0.9;
   background-color: black;
   border-color: gray;
-  color: yellow;
+  color: rgb(245, 224, 66);
   border-top-width: 3px;
   border-left-width: 3px;
   border-right-width: 0px;
@@ -80,7 +80,7 @@ li {
 
 .modal-content {
   background-color: black;
-  color: yellow;
+  color: rgb(245, 224, 66);
 }
 
 .modal-image {
@@ -95,17 +95,17 @@ p {
 }
 
 .close {
-  color: yellow;
+  color: rgb(245, 224, 66);
   opacity: 100;
 }
 
 .close:hover, .close:focus {
-  color: yellow;
+  color: rgb(245, 224, 66);
   opacity: 0.6;
 }
 
 .btn-secondary {
-  background-color: yellow;
+  background-color: rgb(245, 224, 66);
   color: black;
   border-radius: 50%;
   border-top-width: 0px;
@@ -115,7 +115,7 @@ p {
 }
 
 .btn-secondary:hover, .btn-secondary:focus {
-  background-color: yellow;
+  background-color: rgb(245, 224, 66);
   color: black;
   border-top-width: 2px;
   border-left-width: 2px;
