@@ -10,7 +10,7 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-  //ensures pokemon is an object
+  // ensures pokemon is an object
   function add(pokemon) {
     if (typeof pokemon === 'object') {
       return pokemonList.push(pokemon);
@@ -50,7 +50,7 @@ let pokemonRepository = (function () {
     button.setAttribute("data-toggle", "modal");
     button.classList.add(pokemon.name);
 
-    //establishes hierarchy of list elements
+    // establishes hierarchy of list elements
     container.appendChild(button);
     listItem.appendChild(container);
     list.appendChild(listItem);
