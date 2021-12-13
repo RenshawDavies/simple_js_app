@@ -7,10 +7,7 @@
   ],
   "rules": {
     "quotes": ["error", "single"], // requires single quotes where possible
-    "spaced-comment": ["always"], // requires a space before a comment
     "object-curly-newline": ["always"], // requires new line before curly brackets open and after close
-    "object-curly-spacing": ["error", "never"], // disallows inside space adjacent to curly brackets
-    "space-in-parens": ["error", "never"], // disallows inside space adjacent to parentheses
     "lines-around-comment": ["error", {"beforeLineComment": true}] // requires line break before line comment
   }
 }
