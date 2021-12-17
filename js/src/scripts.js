@@ -16,7 +16,7 @@ let pokemonRepository = (function () {
       return pokemonList.push(pokemon);
     } else {
       console.log('not a pokemon')
-    };
+    }
   }
 
   // adds a new pokemon
@@ -46,8 +46,8 @@ let pokemonRepository = (function () {
     // adds text to button
     button.innerText = pokemon.name;
 
-    button.setAttribute("data-target", "#exampleModal");
-    button.setAttribute("data-toggle", "modal");
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#exampleModal');
     button.classList.add(pokemon.name);
 
     // establishes hierarchy of list elements
@@ -56,7 +56,7 @@ let pokemonRepository = (function () {
     list.appendChild(listItem);
 
     // activates showDetails upon clicking button
-    button.addEventListener('click', function (event) {
+    button.addEventListener('click', function () {
       showDetails(pokemon);
     });
   }
@@ -76,7 +76,7 @@ let pokemonRepository = (function () {
     }).catch(function (e) {
       console.error(e);
     });
-  };
+  }
 
   // add details to array from api data
   function loadDetails(item) {
@@ -92,41 +92,39 @@ let pokemonRepository = (function () {
     }).catch(function (e) {
       console.error(e);
     })
-  };
+  }
 
   // outputs requested details from api for specific pokemon
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {  
       showModal(pokemon);
     }) 
-  }; 
+  }
 
-  // MODAL
-
-  let modalContainer = document.querySelector('#exampleModal');
+// MODAL
 
   // shows modal only if button is clicked
   function showModal(pokemon) {
 
     // clears all existing modal content
-    let modalBody = $(".modal-body");
-    let modalTitle = $(".modal-title");
+    let modalBody = $('.modal-body');
+    let modalTitle = $('.modal-title');
 
     modalBody.empty();
     modalTitle.empty();
 
     // adds name as heading in modal
-    let nameElement = $("<h5>" + "Hi, I\'m " + pokemon.name + "!" + "</h5>");
+    let nameElement = $('<h5>' + 'Hi, I\'m ' + pokemon.name + '!' + '</h5>');
 
     // adds pokemon image to modal
     let imageElement = $(`<img class='modal-image' style='width:30%' alt='image of ${pokemon.name}'>`);
-    imageElement.attr("src", pokemon.imgUrl);
+    imageElement.attr('src', pokemon.imgUrl);
 
     // adds pokemon height to modal
-    let heightElement = $("<p>" + "Height: " + pokemon.height + " m" + "</p>");
+    let heightElement = $('<p>' + 'Height: ' + pokemon.height + ' m' + '</p>');
 
     // adds pokemon weight to modal
-    let weightElement = $("<p>" + "Weight: " + pokemon.weight + " kg" + "</p>");
+    let weightElement = $('<p>' + 'Weight: ' + pokemon.weight + ' kg' + '</p>');
 
     // adds pokemon type(s) to modal
     let typesElement = $(`<p> Types(s): ${pokemon.types.map(p => p.type.name).join(', ')}</p>`);
@@ -138,10 +136,6 @@ let pokemonRepository = (function () {
     modalBody.append(weightElement);
     modalBody.append(typesElement);
   } 
-
-    function hideModal() {
-      modalContainer.classList.remove('is-visible');
-    }
 
   // functions that can access the IIFE
   return {
