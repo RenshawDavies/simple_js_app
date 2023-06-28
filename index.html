@@ -1,107 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Primary Font: Press Start 2P -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+		<!-- Primary Font: Press Start 2P -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+			rel="stylesheet"
+		/>
 
-    <title>Simple JS App</title>
+		<title>Pokedex!</title>
 
-    <!-- Bootstrap Stylesheet -->
-    <link 
-      rel="stylesheet" 
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
-      crossorigin="anonymous">
+		<!-- Bootstrap Stylesheet -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
 
-    <!-- My Custom Stylesheet -->
-    <link href="css/dist/minifiedStyles.css" rel="stylesheet" type="text/css" />
-  </head>
-  
-  <body>
+		<!-- My Custom Stylesheet -->
+		<link href="css/dist/minifiedStyles.css" rel="stylesheet" type="text/css" />
+	</head>
 
-    <!-- Bootstrap Navbar -->
-    <nav class="navbar">
-      <!-- <a class="navbar-brand" href="#">
+	<body>
+		<!-- Bootstrap Navbar -->
+		<nav class="navbar">
+			<!-- <a class="navbar-brand" href="#">
         <img src="https://via.placeholder.com/30" width="90" height="30" alt=""> 
         Pokedex!
       </a> (Might add later)-->
-      <h2 class="navbar-title">Pokedex!</h2>
-      <div class="sr-only">Click any Pokemon name to find more information about that Pokemon</div>
-    </nav>
-    <br>
+			<h2 class="navbar-title">Pokedex!</h2>
+			<div class="sr-only">
+				Click any Pokemon name to find more information about that Pokemon
+			</div>
+		</nav>
+		<br />
 
-    <!-- Bootstrap Modal -->
+		<!-- Bootstrap Modal -->
 
-    <!-- Button that triggers modal -->
-    <ul class="pokemon-list list-group"></ul>
+		<!-- Button that triggers modal -->
+		<ul class="pokemon-list list-group"></ul>
 
-    <!-- Modal itself -->
-    <!-- dark transparent background covering entire screen -->
-    <div 
-      class="modal fade" 
-      id="exampleModal" 
-      tabindex="-1" 
-      role="dialog" 
-      aria-labelledby="exampleModalLabel" 
-      aria-hidden="true">
+		<!-- Modal itself -->
+		<!-- dark transparent background covering entire screen -->
+		<div
+			class="modal fade"
+			id="exampleModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="exampleModalLabel"
+			aria-hidden="true"
+		>
+			<!-- modal box -->
+			<div class="modal-dialog" role="document">
+				<!-- wrapper around modal content -->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close"
+						>
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">...</div>
+					<div class="modal-footer">
+						<!-- Close button -->
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal"
+							aria-label="Close"
+						>
+							Close
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-      <!-- modal box -->
-      <div class="modal-dialog" role="document">
+		<!-- JavaScript -->
 
-        <!-- wrapper around modal content -->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
+		<!-- Polyfills -->
+		<script src="js/dist/promise-polyfill.js"></script>
+		<script src="js/dist/fetch-polyfill.js"></script>
 
-            <!-- Close button -->
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
+		<!-- jquery for bootstrap -->
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"
+		></script>
 
-    <!-- JavaScript -->
+		<!-- popper for bootstrap -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"
+		></script>
 
-    <!-- Polyfills -->
-    <script src="js/dist/promise-polyfill.js"></script>
-    <script src="js/dist/fetch-polyfill.js"></script>
+		<!-- bootstrap custom script -->
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"
+		></script>
 
-    <!-- jquery for bootstrap -->
-    <script 
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
-      crossorigin="anonymous">
-    </script>
-
-    <!-- popper for bootstrap -->
-    <script 
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
-      crossorigin="anonymous">
-    </script>
-
-    <!-- bootstrap custom script -->
-    <script 
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
-      crossorigin="anonymous">
-    </script>
-
-    <!-- my custom script -->
-    <script src="js/dist/minifiedScripts.js"></script>
-
-  </body>
+		<!-- my custom script -->
+		<script src="js/dist/minifiedScripts.js"></script>
+	</body>
 </html>
